@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tugas Akhir | Reghina Cahya W.</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0d6e3;
+        margin: 20px;
+      }
+
+      h2 {
+        color: #333;
+      }
+
+      label {
+        display: block;
+        margin-top: 10px;
+        color: #333;
+      }
+
+      input,
+      select,
+      button {
+        margin-bottom: 10px;
+      }
+
+      button {
+        padding: 8px;
+        background-color: #e27592; 
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 90%;
+        margin: 20px auto; /* Rata tengah */
+        background-color: #fff; /* Warna putih */
+        border: 1px solid #ddd;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        text-align: center;
+        padding: 10px;
+      }
+
+      th {
+        background-color: #e27592; 
+        color: #fff;
+      }
+
+      .editBtn,
+      .deleteBtn {
+        padding: 5px 10px;
+        margin: 2px;
+        cursor: pointer;
+      }
+
+      .editBtn {
+        background-color: #90ee90; /* Warna hijau muda */
+      }
+
+      .deleteBtn {
+        background-color: #ffcccb; 
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Formulir Input Data Pasien</h2>
+
+    <label for="idPasien">ID Pasien:</label>
+    <input type="text" id="idPasien" placeholder="Masukkan ID Pasien" /><br />
+
+    <label for="namaPasien">Nama Pasien:</label>
+    <input type="text" id="namaPasien" placeholder="Masukkan Nama Pasien" /><br />
+
+    <label for="alamat">Alamat:</label>
+    <input type="text" id="alamat" placeholder="Masukkan Alamat" /><br />
+
+    <label for="penyakit">Penyakit:</label>
+    <input type="text" id="penyakit" placeholder="Masukkan Penyakit" /><br />
+
+    <label for="nomorRuang">Nomor Ruang:</label>
+    <input type="text" id="nomorRuang" placeholder="Masukkan Nomor Ruang" /><br />
+
+    <label for="bpjs">BPJS:</label>
+    <select id="bpjs">
+      <option value="ya">Ya</option>
+      <option value="tidak">Tidak</option></select
+    ><br />
+
+    <label for="tanggalMasuk">Tanggal Masuk:</label>
+    <input type="date" id="tanggalMasuk" /><br />
+
+    <label for="tanggalKeluar">Tanggal Keluar:</label>
+    <input type="date" id="tanggalKeluar" /><br />
+
+    <button onclick="simpanData()">Simpan Data</button>
+
+    <h2>Data Pasien Rumah Sakit</h2>
+
+    <table id="tabelPasien">
+      <thead>
+        <tr>
+          <th>ID Pasien</th>
+          <th>Nama Pasien</th>
+          <th>Alamat</th>
+          <th>Penyakit</th>
+          <th>Nomor Ruang</th>
+          <th>BPJS</th>
+          <th>Tanggal Masuk</th>
+          <th>Tanggal Keluar</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="tabelBodyPasien"></tbody>
+    </table>
+
+    <script>
+      function simpanData() {
+        var idPasienInput = document.getElementById("idPasien").value;
+        var namaPasienInput = document.getElementById("namaPasien").value;
+        var alamatInput = document.getElementById("alamat").value;
+        var penyakitInput = document.getElementById("penyakit").value;
+        var nomorRuangInput = document.getElementById("nomorRuang").value;
+        var bpjsInput = document.getElementById("bpjs").value;
+        var tanggalMasukInput = document.getElementById("tanggalMasuk").value;
+        var tanggalKeluarInput = document.getElementById("tanggalKeluar").value;
+
+        if (idPasienInput && namaPasienInput && alamatInput && penyakitInput && nomorRuangInput && bpjsInput && tanggalMasukInput) {
+          var tabelBodyPasien = document.getElementById("tabelBodyPasien");
+          var newRowPasien = tabelBodyPasien.insertRow();
+
+          var cell1Pasien = newRowPasien.insertCell(0);
+          var cell2Pasien = newRowPasien.insertCell(1);
+          var cell3Pasien = newRowPasien.insertCell(2);
+          var cell4Pasien = newRowPasien.insertCell(3);
+          var cell5Pasien = newRowPasien.insertCell(4);
+          var cell6Pasien = newRowPasien.insertCell(5);
+          var cell7Pasien = newRowPasien.insertCell(6);
+          var cell8Pasien = newRowPasien.insertCell(7);
+          var cell9Pasien = newRowPasien.insertCell(8);
+
+          cell1Pasien.innerHTML = idPasienInput;
+          cell2Pasien.innerHTML = namaPasienInput;
+          cell3Pasien.innerHTML = alamatInput;
+          cell4Pasien.innerHTML = penyakitInput;
+          cell5Pasien.innerHTML = nomorRuangInput;
+          cell6Pasien.innerHTML = bpjsInput;
+          cell7Pasien.innerHTML = tanggalMasukInput;
+          cell8Pasien.innerHTML = tanggalKeluarInput;
+          cell9Pasien.innerHTML = '<span class="editBtn" onclick="editData(this)">Edit</span> | <span class="deleteBtn" onclick="hapusData(this)">Hapus</span>';
+
+          // Reset input setelah menyimpan data
+          document.getElementById("idPasien").value = "";
+          document.getElementById("namaPasien").value = "";
+          document.getElementById("alamat").value = "";
+          document.getElementById("penyakit").value = "";
+          document.getElementById("nomorRuang").value = "";
+          document.getElementById("bpjs").value = "ya";
+          document.getElementById("tanggalMasuk").value = "";
+          document.getElementById("tanggalKeluar").value = "";
+        } else {
+          alert("Harap isi semua field yang dibutuhkan!");
+        }
+      }
+
+      function editData(element) {
+        var row = element.parentNode.parentNode;
+        var cells = row.getElementsByTagName("td");
+
+        document.getElementById("idPasien").value = cells[0].innerHTML;
+        document.getElementById("namaPasien").value = cells[1].innerHTML;
+        document.getElementById("alamat").value = cells[2].innerHTML;
+        document.getElementById("penyakit").value = cells[3].innerHTML;
+        document.getElementById("nomorRuang").value = cells[4].innerHTML;
+        document.getElementById("bpjs").value = cells[5].innerHTML;
+        document.getElementById("tanggalMasuk").value = cells[6].innerHTML;
+        document.getElementById("tanggalKeluar").value = cells[7].innerHTML;
+
+        // Hapus baris yang diedit
+        row.parentNode.removeChild(row);
+      }
+
+      function hapusData(element) {
+        var row = element.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+      }
+    </script>
+  </body>
+</html>
