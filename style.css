@@ -1,0 +1,11 @@
+body {
+    font-family: "Times New Roman";
+    min-height: 2000px;
+  }
+  .jumbotron {
+    padding-top: 7rem;
+    background-color: rgb(255, 210, 227);
+  }
+  section {
+    padding-top: 5rem;
+  }
